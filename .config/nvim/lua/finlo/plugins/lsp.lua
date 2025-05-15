@@ -1,4 +1,11 @@
 return {
+	"neovim/nvim-lspconfig",
+	dependencies = {
+		"mason-org/mason-lspconfig.nvim",
+	},
+}
+--[[
+return {
 	-- lsp
 	{
 		"VonHeikemen/lsp-zero.nvim",
@@ -143,3 +150,4 @@ return {
 		end,
 	},
 }
+--]]

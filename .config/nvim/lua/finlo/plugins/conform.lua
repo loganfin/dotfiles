@@ -1,4 +1,4 @@
--- This allows forces line-breaking in onlymarkdown files only
+-- This allows forces line-breaking in markdown files only
 local wrap_markdown = function()
 	if vim.bo.filetype == "markdown" then
 		return { "--prose-wrap=always" }
@@ -47,6 +47,9 @@ return {
 				},
 				prettier = {
 					prepend_args = wrap_markdown,
+				},
+				stylua = {
+					prepend_args = { "--column-width=80" },
 				},
 			},
 		})
