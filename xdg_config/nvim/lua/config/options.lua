@@ -26,6 +26,9 @@ vim.opt.smartindent = true
 vim.opt.autoindent = true
 vim.opt.cino = "(gNN-s)" -- fix namespace indenting in c++
 -- TODO: disable auto-insertion of comments on new line
+--vim.opt.formatoptions:remove "c"
+--vim.opt.formatoptions:remove "r"
+--vim.opt.formatoptions:remove "o"
 
 -- Search
 vim.opt.ignorecase = true
@@ -43,6 +46,9 @@ vim.opt.termguicolors = true
 
 -- Files
 vim.opt.swapfile = false
+
+-- Windows
+vim.opt.winborder = "rounded"
 
 -- Experimental
 vim.opt.undofile = true

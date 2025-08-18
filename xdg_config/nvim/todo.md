@@ -1,0 +1,3 @@
+- [ ] Better workflow for quick fix lists
+- [ ] Research cool default keymaps
+  - `gc` to comment lines
