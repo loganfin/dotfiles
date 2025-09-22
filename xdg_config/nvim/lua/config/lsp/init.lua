@@ -43,6 +43,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
-require("config.lsp.lua_ls")
 require("config.lsp.clangd")
+require("config.lsp.go")
+require("config.lsp.lua_ls")
 require("config.lsp.pyright")

@@ -1,15 +1,32 @@
 return {
-	"gruvbox-community/gruvbox",
-	version = "v2.2.0",
+	"ellisonleao/gruvbox.nvim",
 	lazy = false,
 	config = function()
+		local gruvbox = require("gruvbox")
+
+		gruvbox.setup({
+			contrast = "hard",
+			-- I don't like the italics too much
+			italic = {
+				strings = false,
+				emphasis = false,
+				comments = false,
+				operators = false,
+				folds = false,
+			},
+
+			overrides = {
+				-- Transparent signcolumn
+				SignColumn = { bg = "none" },
+			},
+		})
+
+		-- This seems to be the default, but just to be safe...
+		vim.o.background = "dark"
+
 		vim.cmd.colorscheme("gruvbox")
-		vim.g.gruvbox_contrast_dark = "soft"
-		vim.opt.background = "dark"
 
-		vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
-
-		-- highlight trailing whitespace
+		-- Highlight trailing whitespace
 		vim.cmd([[
             highlight ExtraWhitespace ctermbg=240 guibg=#FFD9D9
             match ExtraWhitespace /\s\+$/
@@ -18,3 +35,4 @@ return {
         ]])
 	end,
 }
+

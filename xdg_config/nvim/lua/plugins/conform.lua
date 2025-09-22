@@ -25,6 +25,7 @@ return {
 				typescriptreact = { "prettierd" },
 				cpp = { "clang_format" },
 				c = { "clang_format" },
+                go = { "gofmt" },
 			},
 			formatters = {
 				black = {

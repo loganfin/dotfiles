@@ -26,6 +26,7 @@ return {
 			"lua-language-server",
 			"clangd",
             "pyright",
+            "gopls",
 			-- Formatters
 
 			"clang-format",
