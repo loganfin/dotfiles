@@ -1,6 +1,9 @@
-HISTFILE="$HOME/.zsh_history"
+#!/usr/bin/env zsh
+
+HISTFILE="${ZSH_CONFIG_DIR}/history"
 HISTSIZE=100000
 SAVEHIST=100000
+
 setopt append_history
 setopt extended_history
 setopt inc_append_history

@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+alias ls="ls --color=tty"
+alias grep="grep --color=auto"

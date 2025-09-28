@@ -1,0 +1,44 @@
+#!/usr/bin/env zsh
+
+source "${ZSH_CONFIG_DIR}/functions.zshrc"
+
+# Completions
+autoload -Uz compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+
+# Options
+setopt \
+    alwaystoend \
+    autocd \
+    autopushd \
+    completeinword \
+    extendedhistory \
+    noflowcontrol \
+    interactivecomments \
+    login \
+    longlistjobs \
+    monitor \
+    pushdignoredups \
+    pushdminus \
+    zle
+
+unsetopt BEEP
+
+# Key binds
+# Fix delete key emitting tilde
+bindkey "^[[3~" delete-char
+
+# Other configurations
+zsh_source "${ZSH_CONFIG_DIR}/aliases.zshrc"
+zsh_source "${ZSH_CONFIG_DIR}/exports.zshrc"
+zsh_source "${ZSH_CONFIG_DIR}/history.zshrc"
+zsh_source "${ZSH_CONFIG_DIR}/prompt.zshrc"
+zsh_source "${ZSH_CONFIG_DIR}/work.zshrc"
+zsh_source "${ZSH_CONFIG_DIR}/devtools.zshrc"
+
+# Plugins
+zsh_add_plugin "zsh-users/zsh-autosuggestions"
+zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
