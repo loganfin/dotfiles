@@ -2,3 +2,4 @@
 
 alias ls="ls --color=tty"
 alias grep="grep --color=auto"
+alias l="ls -lah"
