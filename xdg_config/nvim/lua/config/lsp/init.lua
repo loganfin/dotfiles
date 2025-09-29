@@ -15,6 +15,7 @@ local config = {
 }
 
 vim.diagnostic.config(config)
+vim.keymap.set("n", "gl", vim.diagnostic.open_float)
 
 -- Keymaps
 --vim.keymap.set("n", "<C-Space>", "<C-x><C-o>")
@@ -47,3 +48,4 @@ require("config.lsp.clangd")
 require("config.lsp.gopls")
 require("config.lsp.lua_ls")
 require("config.lsp.pyright")
+-- require("config.lsp.tailwindcss")
