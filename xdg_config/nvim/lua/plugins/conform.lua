@@ -20,6 +20,7 @@ return {
 				javascript = { "prettierd" },
 				javascriptreact = { "prettierd" },
 				json = { "prettierd" },
+				jsonc = { "prettierd" },
 				markdown = { "prettierd" },
 				typescript = { "prettierd" },
 				typescriptreact = { "prettierd" },
