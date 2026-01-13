@@ -1,0 +1,31 @@
+#!/usr/bin/env sh
+
+set -e
+
+find_branch() {
+    git branch --all \
+        | grep -v -E "HEAD|\*" \
+        | sed 's/remotes\/[^/]*\///' \
+        | sort \
+        | uniq
+}
+
+branch="$1"
+
+git remote update origin --prune > /dev/null
+
+case "${branch}" in
+-|master|main)
+    # Pass these through as special cases
+    ;;
+"")
+    branch="$(find_branch | fzf)"
+    ;;
+*)
+    branch="$(find_branch | grep "${branch}" | head -n 1)"
+    ;;
+esac
+
+if [ -n "${branch}" ]; then
+    git checkout ${branch}
+fi

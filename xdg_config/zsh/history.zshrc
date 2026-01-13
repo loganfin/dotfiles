@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-HISTFILE="${ZSH_CONFIG_DIR}/history"
+HISTFILE="${ZSH_STATE_DIR}/history"
 HISTSIZE=100000
 SAVEHIST=100000
 

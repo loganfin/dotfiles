@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-source "${ZSH_CONFIG_DIR}/functions.zshrc"
+source "${ZSH_CONFIG_DIR}/util.zshrc"
 
 # Completions
 autoload -Uz compinit
@@ -32,8 +32,18 @@ autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search
-bindkey "^[[B" down-line-or-beginning-search
+
+# Keybinds are different on different terminal emulators
+if uname -r | grep "microsoft-standard-WSL2" >> /dev/null; then
+    UP_KEY="^[OA"
+    DOWN_KEY="^[OB"
+else
+    UP_KEY="^[[A"
+    DOWN_KEY="^[[B"
+fi
+
+bindkey "${UP_KEY}" up-line-or-beginning-search
+bindkey "${DOWN_KEY}" down-line-or-beginning-search
 
 # Key binds
 # Fix delete key emitting tilde
@@ -46,7 +56,4 @@ zsh_source "${ZSH_CONFIG_DIR}/history.zshrc"
 zsh_source "${ZSH_CONFIG_DIR}/prompt.zshrc"
 zsh_source "${ZSH_CONFIG_DIR}/work.zshrc"
 zsh_source "${ZSH_CONFIG_DIR}/devtools.zshrc"
-
-# Plugins
-zsh_add_plugin "zsh-users/zsh-autosuggestions"
-zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+zsh_source "${ZSH_CONFIG_DIR}/plugins.zshrc"
