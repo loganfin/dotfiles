@@ -13,8 +13,11 @@ return {
 
 		conform.setup({
 			formatters_by_ft = {
+				sh = { "shfmt" },
+				bash = { "shfmt" },
 				lua = { "stylua" },
 				python = { "isort", "black" },
+				scss = { "prettierd" },
 				css = { "prettierd" },
 				html = { "prettierd" },
 				javascript = { "prettierd" },
@@ -45,9 +48,6 @@ return {
 					}),
 				},
 				prettierd = {
-					prepend_args = wrap_markdown,
-				},
-				prettier = {
 					prepend_args = wrap_markdown,
 				},
 				stylua = {
