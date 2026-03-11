@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 
-HISTFILE="${ZSH_STATE_DIR}/history"
-HISTSIZE=100000
-SAVEHIST=100000
+export HISTFILE="${ZSH_STATE_DIR}/history"
+export HISTSIZE=100000
+export SAVEHIST=100000
 
 setopt append_history
 setopt extended_history

@@ -1,13 +1,11 @@
-#!/usr/bin/env zsh
-
 source "${ZSH_CONFIG_DIR}/util.zshrc"
 
 # Completions
 autoload -Uz compinit
+compinit -d "${ZSH_CACHE_DIR}/compinit-${ZSH_VERSION}"
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit
 
 # Options
 setopt \
@@ -27,13 +25,18 @@ setopt \
 
 unsetopt BEEP
 
+# Enable editing the current command line with an editor
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
 # Autocomplete on up/down arrow
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
-# Keybinds are different on different terminal emulators
+# Keycodes are different on different terminal emulators
 if uname -r | grep "microsoft-standard-WSL2" >> /dev/null; then
     UP_KEY="^[OA"
     DOWN_KEY="^[OB"
@@ -42,10 +45,10 @@ else
     DOWN_KEY="^[[B"
 fi
 
+# Key binds
 bindkey "${UP_KEY}" up-line-or-beginning-search
 bindkey "${DOWN_KEY}" down-line-or-beginning-search
 
-# Key binds
 # Fix delete key emitting tilde
 bindkey "^[[3~" delete-char
 
