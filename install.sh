@@ -8,6 +8,12 @@ set -eu
 mkdir -p ~/.config
 ln -srf xdg_config/nvim ~/.config
 ln -srf xdg_config/zsh ~/.config
+ln -srf xdg_config/alacritty ~/.config
+ln -srf xdg_config/sway ~/.config
+ln -srf xdg_config/kanata ~/.config
+ln -srf xdg_config/waybar ~/.config
+ln -srf xdg_config/ncspot ~/.config
+ln -srf xdg_config/wireplumber ~/.config
 
 if [ -e ~/.zshenv ]; then
     mv ~/.zshenv ~/.zshenv.old

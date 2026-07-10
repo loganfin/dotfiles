@@ -1,0 +1,178 @@
+(defcfg
+  linux-dev /dev/input/by-id/usb-ASUSTeK_Computer_Inc._N-KEY_Device-if02-event-kbd:/dev/input/by-id/usb-ASUSTeK_Computer_Inc._N-KEY_Device-event-if00
+
+  ;; process-unmapped-keys yes
+)
+
+(defsrc
+  prog1
+  esc    f1     f2     f3     f4     f5     f6     f7     f8     f9    f10    f11    f12      del
+  grv    1      2      3      4      5      6      7      8      9      0      -      =      bspc
+  tab    q      w      e      r      t      y      u      i      o      p      [      ]       \
+  caps   a      s      d      f      g      h      j      k      l      ;      '      ret
+  lsft   z      x      c      v      b      n      m      ,      .      /      rsft   up
+  lctl   lmet   lalt                 spc                  ralt   rmet   rctl   lft   down    rght
+)
+
+(deflocalkeys-linux
+  ;; armoury crate key on flow-x13
+  prog1 148
+)
+
+(defalias
+  ;; tap-dance
+  ;; layer-shift keys
+  rnum (tap-hold 1 200 ret (layer-while-held num))
+  tsym (tap-hold 1 200 tab (layer-while-held sym))
+  bnav (tap-hold 1 200 bspc (layer-while-held nav))
+  adj (layer-while-held adj)
+  dv (layer-switch dvorak)
+  qw (layer-switch qwerty)
+
+  ;; macros
+  ;; flash the caps light
+  lt (macro caps 100 caps)
+  dlt (macro caps 100 caps 100 caps 100 caps)
+  rld (macro caps 100 caps lrld)
+
+  ;; multis
+  ;; switch to layer and flash lights
+  dvlt (multi @dv @lt)
+  qwlt (multi @qw @dlt)
+
+  ;; shifted keys
+  ! S-1
+  @ S-2
+  # S-3
+  $ S-4
+  % S-5
+  ^ S-6
+  & S-7
+  * S-8
+  lp S-9
+  rp S-0
+  | S-\
+  ~ S-`
+  { S-[
+  } S-]
+  < S-,
+  > S-.
+  + S-=
+  : S-;
+  _ S--
+
+  ;; thumb keys
+    ;; dvorak
+    t_ent (tap-hold 1 200 ent (layer-while-held num))
+    t_lsft (tap-dance 200 ((one-shot 2000 lsft) (caps-word 2000)))
+
+    t_spc (tap-hold 1 200 spc (layer-while-held nav))
+    t_rsft (tap-dance 200 ((one-shot 2000 rsft) caps))
+
+  ;; home-row modifiers
+    ;; dvorak
+    home_u (tap-hold 1 200 u lctl)
+    home_e (tap-hold 1 200 e lalt)
+    home_o (tap-hold 1 200 o lmet)
+    home_a (tap-hold 1 200 a (layer-while-held sym))
+
+    home_h (tap-hold 1 200 h rctl)
+    home_t (tap-hold 1 200 t ralt)
+    home_n (tap-hold 1 200 n rmet)
+    home_s (tap-hold 1 200 s (layer-while-held sym))
+
+    ;; num / sym
+    home_4 (tap-hold 1 200 4 rctl)
+    home_5 (tap-hold 1 200 5 ralt)
+    home_6 (tap-hold 1 200 6 rmet)
+
+    home_= (tap-hold 1 200 = rctl)
+    home_+ (tap-hold 1 200 @+ ralt)
+    home_- (tap-hold 1 200 - rmet)
+
+    ;; sym
+    home_: (tap-hold 1 200 @: rctl)
+    home_lp (tap-hold 1 200 @lp ralt)
+    home_rp (tap-hold 1 200 @rp rmet)
+
+    lpctl (tap-hold 1 200 @lp lctl)
+    {alt (tap-hold 1 200 @{ lalt)
+    [met (tap-hold 1 200 [ lmet)
+    rpctl (tap-hold 1 200 @rp rctl)
+    }alt (tap-hold 1 200 @} ralt)
+    ]met (tap-hold 1 200 ] rmet)
+
+    ;; nav
+    lfctl (tap-hold 1 200 lft rctl)
+
+)
+
+(deflayer qwerty
+ @adj
+  esc    f1     f2     f3     f4     f5     f6     f7     f8     f9    f10    f11    f12    del
+  grv    1      2      3      4      5      6      7      8      9      0      -      =     bspc
+  tab    q      w      e      r      t      y      u      i      o      p      [      ]      \
+  esc    a      s      d      f      g      h      j      k      l      ;      '      ret
+  lsft   z      x      c      v      b      n      m      ,      .      /     rsft    up
+  lctl  lmet   lalt                 spc                  ralt   rmet   rctl   lft    down   rght
+)
+
+(deflayer dvorak
+ @adj
+  XX       XX       XX       XX       XX       XX       XX       XX       XX       XX       XX       XX       XX       XX
+  tab      '        ,        .        p        y        XX       f        g        c        r        l        /        XX
+  esc   @home_a  @home_o  @home_e  @home_u     i        XX       d     @home_h  @home_t  @home_n  @home_s     -        XX
+  XX       ;        q        j        k        x        XX       b        m        w        v        z        XX
+  XX       XX       XX    @t_lsft  @t_ent     tab      bspc   @t_spc   @t_rsft     XX       XX       XX       XX
+  XX       XX       XX                         XX                         XX       XX       XX       XX       XX       XX
+)
+
+(deflayer num
+  f13
+  XX       XX       XX       XX       XX       XX       XX       XX       XX       XX       XX       XX       XX       XX
+  XX       XX       @<       @>       @@       @#       XX       \        7        8        9        XX       XX       XX
+  esc      @!    @home_-  @home_+  @home_=     .        XX       @|    @home_4  @home_5  @home_6     0        XX       XX
+  XX       XX       /        @*       @^       `        XX       @~       1        2        3        XX       XX
+  XX       XX       XX       XX       XX       XX      bspc     spc    @t_rsft     XX       XX       XX       XX
+  XX       XX       XX                         XX                         XX       XX       XX       XX       XX       XX
+)
+
+(deflayer sym
+  f13
+  XX       XX       XX       XX       XX       XX       XX       XX       XX       XX       XX       XX       XX       XX
+  XX       XX       @<       @>       @@       @#       XX       \        @&       @{       @}       XX       /        XX
+  esc      @!    @home_-  @home_+  @home_=     .        XX       @|    @home_:  @home_lp @home_rp    @%       @_       XX
+  XX       XX       /        @*       @^       `        XX       @~       @$       [        ]        XX       XX
+  XX       XX       XX    @t_lsft    ent      tab      bspc     spc    @t_rsft     XX       XX       XX       XX
+  XX       XX       XX                         XX                         XX       XX       XX       XX       XX       XX
+)
+
+(deflayer nav
+  f13
+  XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX
+  XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX    rght    XX     XX
+  XX     XX    lmet   lalt   lctl    XX     XX     XX   @lfctl  ralt   rmet    XX     XX     XX
+  XX     XX     XX    down    up     XX     XX     XX     XX     XX     XX     XX     XX
+  XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX
+  XX     XX     XX                   XX                   XX     XX     XX     XX     XX     XX
+)
+
+(deflayer adj
+  XX
+  XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX
+ @rld  @dvlt  @qwlt     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX
+  XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX
+  XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX
+  XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX
+  XX     XX     XX                   XX                   XX     XX     XX     XX     XX     XX
+)
+
+(deflayer noop
+  XX
+  XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX
+  XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX
+  XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX
+  XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX
+  XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX     XX
+  XX     XX     XX                   XX                   XX     XX     XX     XX     XX     XX
+)

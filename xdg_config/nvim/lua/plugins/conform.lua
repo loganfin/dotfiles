@@ -14,6 +14,7 @@ return {
 		conform.setup({
 			formatters_by_ft = {
 				sh = { "shfmt" },
+				zsh = { "shfmt" },
 				bash = { "shfmt" },
 				lua = { "stylua" },
 				python = { "isort", "black" },

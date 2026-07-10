@@ -1,9 +1,13 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 
 # Mise
-eval "$(~/.local/bin/mise activate zsh)"
+if [ -d "${HOME}/.local/bin/mise" ]; then
+    eval "$("${HOME}/.local/bin/mise" activate zsh)"
+fi
 
 # Pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
+if [ -d "${HOME}/.pyenv" ]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init - zsh)"
+fi
